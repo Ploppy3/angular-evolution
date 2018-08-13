@@ -13,6 +13,10 @@ table {
   th {
     text-align: left;
   }
+  th,
+  td {
+    padding: 0 8px;
+  }
 }
 a {
   color: #448AFF;
