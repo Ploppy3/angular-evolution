@@ -1,0 +1,26 @@
+<div class="row spacer">
+  <div class="col spacer">
+    <div class="row inner-spacer center-items">
+      <canvas [style.display]="category.total > 0 ? 'auto' : 'none'" #canvas width="38px" height="38px"></canvas>
+      <span class="secondary" *ngIf="category.total > 0">{{ (category.done * 100 / category.total) | number:'1.2-2' }}%</span>
+      <b [innerHTML]="category.title | markup"></b>
+    </div>
+    <div *ngFor="let unknown of category.unknowns" [innerHTML]="unknown | markup"></div>
+    <div *ngIf="category.implementations.length > 0">
+      <div *ngFor="let implementation of category.implementations">
+        <app-implementation [implementation]="implementation"></app-implementation>
+      </div>
+    </div>
+    <table *ngIf="category.tableHeaders">
+      <tr>
+        <th *ngFor="let header of category.tableHeaders" [innerHTML]="header | markup"></th>
+      </tr>
+      <tr *ngFor="let row of category.tableRows">
+        <td *ngFor="let col of row" [innerHTML]="col | markup"></td>
+      </tr>
+    </table>
+    <div *ngFor="let child of category.children">
+      <app-category [category]="child"></app-category>
+    </div>
+  </div>
+</div>

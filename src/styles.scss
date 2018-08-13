@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import './framework.scss';
+body {
+  font-family: 'Roboto', sans-serif;
+  color: rgba($color: #000000, $alpha: .87);
+  background-color: #fafafa;
+}
+table {
+  border: 1px solid rgba($color: #000000, $alpha: .24);
+  border-radius: 8px;
+  padding: 8px;
+  th {
+    text-align: left;
+  }
+}
+a {
+  color: #448AFF;
+}
+xmp {
+  margin: 0;
+}
+xmp,
+.code {
+  font-family: 'Roboto Mono', monospace;
+}
+.code {
+  display: inline-block;
+  background-color: #ECEFF1;
+  border-radius: 4px;
+  padding: 0 4px;
+}
+.secondary {
+  color: rgba($color: #000000, $alpha: .54);
+}

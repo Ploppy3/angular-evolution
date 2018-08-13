@@ -1,0 +1,11 @@
+<div>
+  <ng-container [ngSwitch]="implementation.status">
+    <span *ngSwitchCase="status.NA">N/A</span>
+    <span *ngSwitchCase="status.TRUE">✅</span>
+    <span *ngSwitchCase="status.FALSE">❌</span>
+  </ng-container>
+  <span [innerHtml]="implementation.title | markup"></span>
+</div>
+<div id="wrapper-children" *ngIf="implementation.children.length > 0">
+  <app-implementation *ngFor="let child of implementation.children" [implementation]="child"></app-implementation>
+</div>
