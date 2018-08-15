@@ -2,7 +2,7 @@
   <div class="col spacer">
     <div class="row inner-spacer center-items">
       <app-ivy-progress *ngIf="category.total > 0" [progress]="category.done / category.total"></app-ivy-progress>
-      <span class="secondary" *ngIf="category.total > 0">{{ (category.done * 100 / category.total) | number:'1.2-2' }}%</span>
+      <span class="secondary" *ngIf="category.total > 0">{{ (category.done * 100 / category.total) | number:'1.0-0' }}%</span>
       <b [innerHTML]="category.title | markup"></b>
     </div>
     <div *ngFor="let unknown of category.unknowns" [innerHTML]="unknown | markup"></div>
