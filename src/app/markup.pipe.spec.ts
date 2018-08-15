@@ -2,7 +2,7 @@ import { MarkupPipe } from './markup.pipe';
 
 describe('MarkupPipe', () => {
   it('create an instance', () => {
-    const pipe = new MarkupPipe();
+    const pipe = MarkupPipe;
     expect(pipe).toBeTruthy();
   });
 });

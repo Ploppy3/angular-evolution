@@ -20,7 +20,7 @@ export class CategoryComponent implements OnInit {
   }
 
   public draw() {
-    console.log(this.category.title, this.category.total)
+    //console.log(this.category.title, this.category.total)
     if (this.category.total > 0) {
       let ctx: CanvasRenderingContext2D = this.canvas.nativeElement.getContext("2d");
       ctx.beginPath();
