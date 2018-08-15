@@ -9,6 +9,7 @@ import { IvyComponent } from './ivy/ivy.component';
 import { CategoryComponent } from './category/category.component';
 import { ImplementationComponent } from './implementation/implementation.component';
 import { MarkupPipe } from './markup.pipe';
+import { IvyProgressComponent } from './ivy-progress/ivy-progress.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { MarkupPipe } from './markup.pipe';
     CategoryComponent,
     ImplementationComponent,
     MarkupPipe,
+    IvyProgressComponent,
   ],
   imports: [
     BrowserModule,

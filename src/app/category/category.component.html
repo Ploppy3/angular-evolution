@@ -1,7 +1,7 @@
 <div class="row spacer">
   <div class="col spacer">
     <div class="row inner-spacer center-items">
-      <canvas [style.display]="category.total > 0 ? 'auto' : 'none'" #canvas width="38px" height="38px"></canvas>
+      <app-ivy-progress *ngIf="category.total > 0" [progress]="category.done / category.total"></app-ivy-progress>
       <span class="secondary" *ngIf="category.total > 0">{{ (category.done * 100 / category.total) | number:'1.2-2' }}%</span>
       <b [innerHTML]="category.title | markup"></b>
     </div>

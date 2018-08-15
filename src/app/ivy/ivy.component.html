@@ -1,6 +1,7 @@
 <div id="wrapper-global-results" class="row padding" *ngIf="total > 0">
   <div class="center-text">
-    <canvas #canvas width="38px" height="38px"></canvas>
+    <!--<canvas #canvas width="38px" height="38px"></canvas>-->
+    <app-ivy-progress [progress]="done / total"></app-ivy-progress>
     <div>{{ (done * 100 / total) | number:'1.2-2' }}%</div>
   </div>
   <div class="grow">

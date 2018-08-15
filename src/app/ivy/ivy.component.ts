@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -19,8 +19,6 @@ export class IvyComponent implements OnInit {
 
   public total = 0;
   public done = 0;
-
-  @ViewChild('canvas') canvas: ElementRef;
 
   constructor(
     private http: HttpClient,
@@ -132,21 +130,6 @@ export class IvyComponent implements OnInit {
           activeCategories[currentCategoryDepth].unknowns.push(line);
         }
       }
-    })
-    requestAnimationFrame(() => {
-      let ctx: CanvasRenderingContext2D = this.canvas.nativeElement.getContext("2d");
-      ctx.beginPath();
-      ctx.fillStyle = '#CFD8DC';
-      ctx.arc(19, 19, 15, 0, 2 * Math.PI);
-      ctx.fill();
-      ctx.closePath();
-
-      ctx.beginPath();
-      ctx.strokeStyle = '#1E88E5';
-      ctx.lineWidth = 8;
-      ctx.arc(19, 19, 15, - Math.PI / 2, (2 * Math.PI) * this.done / this.total - Math.PI / 2);
-      ctx.stroke();
-      ctx.closePath();
     })
   }
 }
