@@ -109,22 +109,22 @@ export class IvyComponent implements OnInit {
           } else {
             let regex_headerLine = /^[|][^a-z]*[|]$/;
             if (!line.match(regex_headerLine)) { // TABLE ROW
-              activeCategories[currentCategoryDepth].tableRows.push(line.split(' |').map((cell, id) => {
-                if (id === 0) {
-                  cell = cell.substring(1, cell.length - 1);
-                }
-                if (cell.indexOf('✅') != -1) {
-                  this.total++;
-                  this.done++;
-                  activeCategories[currentCategoryDepth].total++;
-                  activeCategories[currentCategoryDepth].done++;
-                } else if (cell.indexOf('❌') != -1) {
-                  this.total++;
-                  activeCategories[currentCategoryDepth].total++;
-
-                }
-                return cell;
-              })
+              activeCategories[currentCategoryDepth].tableRows.push(line.split(' |').map(
+                (cell, id) => {
+                  if (id === 0) {
+                    cell = cell.substring(1, cell.length);
+                  }
+                  if (cell.indexOf('✅') != -1) {
+                    this.total++;
+                    this.done++;
+                    activeCategories[currentCategoryDepth].total++;
+                    activeCategories[currentCategoryDepth].done++;
+                  } else if (cell.indexOf('❌') != -1) {
+                    this.total++;
+                    activeCategories[currentCategoryDepth].total++;
+                  }
+                  return cell;
+                })
               )
             }
           }
