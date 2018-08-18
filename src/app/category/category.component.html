@@ -1,4 +1,4 @@
-<div class="row spacer">
+<div [ngClass]="showBorder || category.depth == 0 ? 'row spacer' : ''">
   <div class="col spacer">
     <div class="row inner-spacer center-items">
       <app-ivy-progress *ngIf="category.total > 0" [progress]="category.done / category.total"></app-ivy-progress>

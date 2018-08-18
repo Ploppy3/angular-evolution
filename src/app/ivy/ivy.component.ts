@@ -15,6 +15,7 @@ export class IvyComponent implements OnInit {
     children: [],
     total: 0,
     done: 0,
+    depth: 0,
   }
 
   public total = 0;
@@ -45,6 +46,7 @@ export class IvyComponent implements OnInit {
           inTable = false;
         }
         if (line.match(/^#+/)) { // TITLE
+          let depth = line.match(/^#+/)[0].length;
           let category: Category = {
             title: line.replace(/[#]+/, ''),
             unknowns: [],
@@ -52,8 +54,8 @@ export class IvyComponent implements OnInit {
             children: [],
             total: 0,
             done: 0,
+            depth: depth,
           }
-          let depth = line.match(/^#+/)[0].length;
           activeCategories[depth - 1].children.push(category);
           activeCategories[depth] = category;
           currentCategoryDepth = depth;
@@ -97,21 +99,30 @@ export class IvyComponent implements OnInit {
         } else if (line.indexOf('|') === 0) { // TABLE ELEMENT
           if (!inTable) { // TABLE HEADER
             inTable = true;
-            activeCategories[currentCategoryDepth].tableHeaders = line.split(' |').map((cell, id) => {
-              if (id === 0) {
-                cell = cell.substring(1, cell.length - 1);
+            activeCategories[currentCategoryDepth].tableHeaders = line.split(' |').filter(
+              (cell, id) => {
+                if (cell.length > 0) return cell; // drop last column
               }
-              return cell;
-            });
+            ).map(
+              (cell, id) => {
+                if (id === 0) {
+                  cell = cell.replace(/^[|]*\s+/, '');
+                }
+                return cell;
+              }
+            );
             activeCategories[currentCategoryDepth].tableRows = [];
           } else {
             let regex_headerLine = /^[|][^a-z]*[|]$/;
             if (!line.match(regex_headerLine)) { // TABLE ROW
-              activeCategories[currentCategoryDepth].tableRows.push(line.split(' |').map(
+              activeCategories[currentCategoryDepth].tableRows.push(line.split(' |').filter(
                 (cell, id) => {
-                  if (id === 0) {
-                    cell = cell.substring(1, cell.length);
-                  }
+                  if (cell.length > 0) return cell; // drop last column
+                }
+              ).map(
+                (cell, id) => {
+                  cell = cell.replace(/^[|]\s*/, ''); //remove leading spaces
+                  cell = cell.replace(/\s+$/, ''); //remove ending spaces
                   if (cell.indexOf('✅') != -1) {
                     this.total++;
                     this.done++;
@@ -122,8 +133,8 @@ export class IvyComponent implements OnInit {
                     activeCategories[currentCategoryDepth].total++;
                   }
                   return cell;
-                })
-              )
+                }
+              ))
             }
           }
         } else {
@@ -142,6 +153,7 @@ export interface Category {
   children: Category[],
   total: number,
   done: number,
+  depth: number,
 }
 
 export interface Implementation {
