@@ -18,7 +18,7 @@ export class IvyProgressComponent implements OnInit {
   }
 
   private draw() {
-    let ctx: CanvasRenderingContext2D = this.canvas.nativeElement.getContext("2d");
+    const ctx: CanvasRenderingContext2D = this.canvas.nativeElement.getContext('2d');
     ctx.beginPath();
     ctx.fillStyle = '#CFD8DC';
     ctx.arc(19, 19, 15, 0, 2 * Math.PI);

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostBinding, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, HostBinding, SimpleChanges, OnChanges } from '@angular/core';
 import { Category } from '../ivy/ivy.component';
 
 @Component({
@@ -7,7 +7,7 @@ import { Category } from '../ivy/ivy.component';
   styleUrls: ['./category.component.scss']
 })
 
-export class CategoryComponent implements OnInit {
+export class CategoryComponent implements OnInit, OnChanges {
 
   @HostBinding('class.showBorder')
   public showBorder = true;
@@ -22,7 +22,7 @@ export class CategoryComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['category']) {
-      this.showBorder = this.category.depth == 1;
+      this.showBorder = this.category.depth === 1;
     }
   }
 }
